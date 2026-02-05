@@ -1,0 +1,22 @@
+from src.schema import PredictRequest, PredictResponse
+
+@app.post("/predict", response_model=PredictResponse)
+def predict(req: PredictRequest) -> PredictResponse:
+    """
+    Stub inference endpoint.
+
+    Later labs will replace this logic with:
+    - preprocessing pipeline
+    - trained model artifact load
+    - real prediction + probability
+    """
+
+    # Placeholder heuristic: if certain spammy tokens appear, call it spam.
+    text = f"{req.subject} {req.message}".lower()
+    spammy = any(tok in text for tok in ["free", "winner", "click", "urgent", "prize", "$$$"])
+
+    label = "spam" if spammy else "ham"
+    score = 0.90 if spammy else 0.40  # stub confidence
+
+    return PredictResponse(label=label, score=score)
+
