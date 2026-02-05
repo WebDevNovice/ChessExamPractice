@@ -20,3 +20,15 @@ up:
 down:
 	docker compose down
 
+.RECIPEPREFIX := >
+.PHONY: ci deploy
+
+
+ci:
+	docker compose build hello
+	docker compose up -d hello
+	sleep 2
+	curl -fs http://localhost:8080 > /dev/null
+
+deploy: ci
+	docker compose up -d --build hello
