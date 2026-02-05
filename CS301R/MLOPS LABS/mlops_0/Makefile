@@ -25,10 +25,11 @@ down:
 
 
 ci:
-	docker compose build hello
-	docker compose up -d hello
+	docker compose build api
+	docker compose up -d api
 	sleep 2
-	curl -fs http://localhost:8080 > /dev/null
+	curl -fs http://localhost:8080/health > /dev/null
+	curl -fs http://localhost:8080/hello > /dev/null
 
 deploy: ci
 	docker compose up -d --build hello

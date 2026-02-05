@@ -1,6 +1,13 @@
+# services:
+#   hello:
+#     build: .
+#     ports:
+#       - "8081:80"
+#     restart: unless-stopped
+
 services:
-  hello:
-    build: .
+  api:
+    build: ./mlops_2/api
     ports:
       - "8080:80"
     restart: unless-stopped
