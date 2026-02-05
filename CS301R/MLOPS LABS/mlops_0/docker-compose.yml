@@ -9,7 +9,7 @@ services:
   api:
     build: ./mlops_2/api
     ports:
-      - "8080:80"
+      - "8080:8000"
     restart: unless-stopped
 
   mlflow:
